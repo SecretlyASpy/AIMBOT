@@ -1,3 +1,6 @@
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local RunService = game:GetService("RunService")
@@ -10,15 +13,15 @@ local mouse = plr:GetMouse()
 --> [< Variables >] <--
 
 local hue = 0
-local rainbowFov = true
+local rainbowFov = false
 local rainbowSpeed = 0.005
 
-local aimFov = 200
+local aimFov = 100
 local aiming = false
-local predictionStrength = 0
-local smoothing = 0
+local predictionStrength = 0.065
+local smoothing = 0.05
 
-local aimbotEnabled = true
+local aimbotEnabled = false
 local wallCheck = true
 local stickyAimEnabled = false
 local teamCheck = false
@@ -31,13 +34,13 @@ local targetedCircleColor = Color3.fromRGB(0, 255, 0)
 --> [< Variables >] <--
 
 local Window = Rayfield:CreateWindow({
-    Name = "▶ Aimbot ◀",
+    Name = "▶ Universal Aimbot ◀",
     LoadingTitle = "Loading...",
-    LoadingSubtitle = "by OFCOURSE Kristoff",
+    LoadingSubtitle = "by Kris",
     ConfigurationSaving = {
         Enabled = true,
-        FolderName = "UniversalAimbot",
-        FileName = "Kristoff"
+        FolderName = "Aimbot",
+        FileName = "Kris"
     },
 })
 
@@ -185,7 +188,7 @@ end)
 
 local aimbot = Aimbot:CreateToggle({
     Name = "Aimbot",
-    CurrentValue = true,
+    CurrentValue = false,
     Flag = "Aimbot",
     Callback = function(Value)
         aimbotEnabled = Value
@@ -208,7 +211,7 @@ local predictionstrength = Aimbot:CreateSlider({
     Name = "Prediction Strength",
     Range = {0, 0.2},
     Increment = 0.001,
-    CurrentValue = 0,
+    CurrentValue = 0.065,
     Flag = "PredictionStrength",
     Callback = function(Value)
         predictionStrength = Value
@@ -266,7 +269,7 @@ local aimbotfov = Aimbot:CreateSlider({
     Name = "Aimbot Fov",
     Range = {0, 1000},
     Increment = 1,
-    CurrentValue = 200,
+    CurrentValue = 100,
     Flag = "AimbotFov",
     Callback = function(Value)
         aimFov = Value
@@ -293,7 +296,7 @@ local targetedcirclecolor = Aimbot:CreateColorPicker({
 
 local circlerainbow = Aimbot:CreateToggle({
     Name = "Rainbow Fov",
-    CurrentValue = true,
+    CurrentValue = false,
     Flag = "RainbowFov",
     Callback = function(Value)
         rainbowFov = Value
